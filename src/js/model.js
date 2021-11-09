@@ -1,6 +1,4 @@
 import 'regenerator-runtime/runtime'; // polyfilling async
-// import regeneratorRuntime from 'regenerator-runtime';
-
 import { API_URL, RES_PER_PAGE, KEY } from './config.js';
 // import { getJSON, sendJSON } from './helpers.js';
 import { AJAX } from './helpers.js';
@@ -34,7 +32,6 @@ export const loadRecipe = async function (id) {
   try {
     const data = await AJAX(`${API_URL}${id}?key=${KEY}`);
     state.recipe = createRecipeObject(data);
-    // console.log(state.recipe);
 
     if (state.bookmarks.some(mark => mark.id === id))
       state.recipe.bookmarked = true;
@@ -50,7 +47,6 @@ export const loadSearchResults = async function (query) {
   try {
     state.search.query = query;
     const { data } = await AJAX(`${API_URL}?search=${query}&key=${KEY}`);
-    // console.log(data);
 
     state.search.results = data.recipes.map(rec => {
       return {

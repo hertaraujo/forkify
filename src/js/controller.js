@@ -9,11 +9,6 @@ import addRecipeView from './views/addRecipeView.js';
 
 import 'core-js/stable'; // polyfilling everything
 import 'regenerator-runtime/runtime'; // polyfilling async
-// import regeneratorRuntime from 'regenerator-runtime';
-
-// if (module.hot) {
-//   module.hot.accept();
-// }
 
 const controlRecipes = async function () {
   try {
@@ -51,7 +46,6 @@ const controlSearchResult = async function () {
     await model.loadSearchResults(query);
 
     // 3) Render results
-    // resultsView.render(model.state.search.results);
     resultsView.render(model.getSearchResultsPage());
 
     // 4) Render initial pagination buttons
@@ -72,8 +66,8 @@ const controlPagination = function (goToPage) {
 const controlServings = function (newServings) {
   // Update the recipe servings (in state)
   model.updateServings(newServings);
+
   // Update the recipe view
-  // recipeView.render(model.state.recipe);
   recipeView.update(model.state.recipe);
 };
 
@@ -100,7 +94,6 @@ const controlAddRecipe = async function (newRecipe) {
 
     // Upload the new recipe data
     await model.uploadRecipe(newRecipe);
-    // console.log(model.state.recipe);
 
     // Render recipe
     recipeView.render(model.state.recipe);
@@ -124,12 +117,7 @@ const controlAddRecipe = async function (newRecipe) {
   }
 };
 
-const newFeature = function () {
-  console.log(`Welcome to the application!`);
-};
-
-const init = function () {
-  // (Subscription)
+const init = function () {// (Subscription)
   bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServings);
@@ -137,6 +125,5 @@ const init = function () {
   searchView.addHandlerSearch(controlSearchResult);
   paginationView.addHandlerClick(controlPagination);
   addRecipeView.addHandlerUpload(controlAddRecipe);
-  newFeature();
 };
 init();
