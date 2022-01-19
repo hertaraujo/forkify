@@ -1,6 +1,6 @@
 # Forkify Project
 
-Recipe application for search, view, modify, bookmark and add recipes
+Simple application for search, view, modify, bookmark and add recipes
 #
 ## This is a final project of [The Complete JavaScript Course](https://www.udemy.com/course/the-complete-javascript-course/)
 
